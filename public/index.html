@@ -2,43 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons&display=swap" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css">  -->
-
-    <!-- <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet"> -->
-    <!-- <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet"> -->
-    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
-
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Tasks</title>
-    <style>
-        .done {
-            text-decoration: line-through;
-        }
-        [v-cloak] {
-            display: none;
-        }
-    </style>
 </head>
 <body>
     <div id="app" v-cloak>
-        <v-app :dark="isDark">
+        <v-app dark>
             <v-toolbar color="blue darken-4" dark>
-                <v-toolbar-side-icon></v-toolbar-side-icon>
-                <v-toolbar-title class="headline">List of tusks</v-toolbar-title>
-
-                <v-spacer></v-spacer>
-
-                <v-tooltip bottom>
-                    <template v-slot:activator="{ on }">
-                        <v-btn icon @click="show = !show" v-on="on">
-                            <v-icon v-model="isDark" @click="isDark = !isDark">{{ show ? 'check_circle' : 'check_circle_outline'}}</v-icon>
-                        </v-btn>
-                    </template>
-                    <span>{{isDark ? 'Dark theme' : 'Light theme'}}</span>
-                </v-tooltip>
+                <v-toolbar-title class="headline">List of tasks</v-toolbar-title>
             </v-toolbar>
             <v-container>
                 <v-layout row justify-center>
@@ -61,7 +36,7 @@
                                             name="todo"
                                             label="Enter title of task"
                                             @keyup.enter="addTodo"
-                                            :dark="isDark"
+                                            dark
                                         ></v-text-field>
                                     </v-flex>
                                 </v-container>
@@ -70,28 +45,28 @@
                                 </v-subheader>
                                 <v-subheader class="subheading" v-else>Your tasks</v-subheader>
                                 <div v-for="(todo, i) in todos" :key="i">
-                                    <v-list-title avatar :name="i">
-                                        <v-list-title-action>
-                                            <v-checkbox
+                                    <div class="task" :name="i">
+                                        <div class="check-box">
+                                            <v-switch
                                                 v-if="!todo.done"
                                                 v-model="todo.done"
                                                 @change="completeTodo(todo.id)"
-                                                :dark="isDark"
-                                            ></v-checkbox>
-                                        </v-list-title-action>
-                                        <v-list-title-content>
-                                            <v-list-title-title :class="{done: todo.done}">
-                                                {{todo.title | capitalize}}
-                                            </v-list-title-title>
-                                            <v-list-title-sub-title>
-                                                Added at: {{todo.createdAt | date(true)}}
-                                                (changed at: {{todo.updatedAt | date(true)}})
-                                            </v-list-title-sub-title>
-                                        </v-list-title-content>
-                                        <v-btn icon ripple color="red" @click="removeTodo(todo.id)">
-                                            <v-icon class="white--text">close</v-icon>
-                                        </v-btn>
-                                    </v-list-title>
+                                                dark
+                                            ></v-switch>
+                                        </div>
+                                        <div class="content">
+                                            <p :class="{done: todo.done}">{{todo.title | capitalize}}</p>
+                                            <div class="date">
+                                                <span>Added: {{todo.createdAt | date(true)}}</span>
+                                                <span>Was done: {{todo.updatedAt | date(true)}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="btn-wrap">
+                                            <v-btn icon ripple color="red" @click="removeTodo(todo.id)">
+                                                <v-icon class="white--text">close</v-icon>
+                                            </v-btn>
+                                        </div>
+                                    </div>
                                 </div>
                             </v-list>
                         </v-card>
@@ -101,11 +76,8 @@
         </v-app>
     </div>
 
-    <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script> -->
-
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
     <script src="/app.js"></script>
 </body>
 </html>
