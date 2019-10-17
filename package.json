@@ -1,0 +1,29 @@
+{
+  "name": "tasktreker-mysql",
+  "version": "1.0.0",
+  "description": "Project on nodejs, vue and MySQL",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ferkalek/tasktreker-mysql.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ferkalek/tasktreker-mysql/issues"
+  },
+  "homepage": "https://github.com/Ferkalek/tasktreker-mysql#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mysql2": "^1.7.0",
+    "sequelize": "^5.19.8"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.4"
+  }
+}

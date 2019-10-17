@@ -1,1 +1,1 @@
-Project on nodejs, view and MySQL
+Project on nodejs, vue and MySQL
